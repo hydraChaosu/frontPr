@@ -1,0 +1,10 @@
+{
+  "compilerOptions" : {
+    "baseUrl": "../../front",
+    "paths" : {
+      "types" : [
+        "../back/types"
+      ]
+    }
+  }
+}
