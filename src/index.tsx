@@ -24,18 +24,10 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-//create header
-//basket
-//log in
-//register
-//user info
-//shop search
-//filter categories
-//shop
-//shopitem
-//styles
-//jwt etc
+//TODO rect query
+//TODO redux and get data
 
-//usememo
-//usecallback
+//TODO styles
 
+//TODO usememo
+//TODO usecallback
