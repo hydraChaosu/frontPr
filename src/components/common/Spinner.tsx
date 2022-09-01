@@ -1,5 +1,10 @@
 import React from 'react';
+import {Spinner} from "@chakra-ui/react";
 
-import './Spinner.css'
-
-export const Spinner = () => <div className="Spinner">Loading...</div>
+export const MySpinner = () => <Spinner
+    thickness='4px'
+    speed='0.65s'
+    emptyColor='gray.200'
+    color='blue.500'
+    size='xl'
+/>

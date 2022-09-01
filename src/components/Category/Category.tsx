@@ -1,4 +1,10 @@
+import {CategoryItem} from "./CategoryItem";
+
 export function Category() {
     //show category items to filter
-    return null;
+    return (
+        <div>
+            {['all', 'alcohol','apples'].map( item => <CategoryItem name={item}/>)}
+        </div>
+    );
 }

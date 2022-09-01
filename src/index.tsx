@@ -1,21 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { ChakraProvider } from '@chakra-ui/react'
-import {BrowserRouter} from "react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ChakraProvider } from "@chakra-ui/react";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-      <BrowserRouter>
-          <ChakraProvider>
-              <App />
-          </ChakraProvider>
-      </BrowserRouter>
+    <BrowserRouter>
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
@@ -24,18 +24,13 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-//create header
-//basket
-//log in
-//register
-//user info
-//shop search
-//filter categories
-//shop
-//shopitem
-//styles
-//jwt etc
+//TODO rect query
+//TODO redux and get data
 
-//usememo
-//usecallback
+//TODO styles
 
+//TODO usememo
+//TODO usecallback
+
+//TODO suspense loading
+//TODO lazy loading
