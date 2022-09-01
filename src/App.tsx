@@ -18,15 +18,15 @@ function App() {
     <>
       <Header/>
         <Routes>
-            <Route path='/' element={<ShopView/>}/>
-            <Route path='/shop/:id' element={<SingleProductView/>}/>
+            {/*<Route path='/' element={<ShopView/>}/>*/}
+            {/*<Route path='/shop/:id' element={<SingleProductView/>}/>*/}
 
-            <Route path='/basket' element={<BasketView/>}/>
+            {/*<Route path='/basket' element={<BasketView/>}/>*/}
 
-            <Route path='/login' element={<LoginView />}/>
-            <Route path='/register' element={<RegisterView/>}/>
+            {/*<Route path='/login' element={<LoginView />}/>*/}
+            {/*<Route path='/register' element={<RegisterView/>}/>*/}
 
-            <Route path='/user' element={<UserView/>}/>
+            {/*<Route path='/user' element={<UserView/>}/>*/}
 
             <Route path='*' element={<NotFound/>}/>
         </Routes>
