@@ -4,7 +4,7 @@ import { Box, Flex, Image } from "@chakra-ui/react";
 export default function NotFoundPage() {
   return (
     <Flex
-      bg="#222224"
+      bg="gray"
       alignItems="center"
       justifyContent="center"
       h="calc(100vh - 80px)"
