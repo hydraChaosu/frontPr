@@ -4,7 +4,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
   Flex,
 } from "@chakra-ui/react";
 import { UserMenu } from "./UserMenu";
