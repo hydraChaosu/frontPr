@@ -23,8 +23,8 @@ function App() {
 
         {/*<Route path='/basket' element={<BasketView/>}/>*/}
 
-        {/*<Route path='/login' element={<LoginView />}/>*/}
-        {/*<Route path='/register' element={<RegisterView/>}/>*/}
+        <Route path="/login" element={<LoginView />} />
+        <Route path="/register" element={<RegisterView />} />
 
         {/*<Route path='/user' element={<UserView/>}/>*/}
 
