@@ -46,14 +46,13 @@ export function UserView() {
   });
 
   return (
-    <>
-      <Flex
-        bg="gray.100"
-        align="center"
-        justify="center"
-        h="calc(100vh - 80px)"
-        direction="column"
-      >
+    <Flex
+      align="center"
+      justify="space-evenly"
+      minH="calc(100vh - 80px)"
+      bg="gray.100"
+    >
+      <Flex bg="gray.100" align="center" justify="center" direction="column">
         <Box bg="white" p={6} rounded="md" w={64}>
           <Formik
             initialValues={{
@@ -165,6 +164,8 @@ export function UserView() {
             )}
           </Formik>
         </Box>
+      </Flex>
+      <Flex bg="gray.100" align="center" justify="center" direction="column">
         <Box bg="white" p={6} rounded="md" w={64}>
           <Formik
             initialValues={{
@@ -257,6 +258,6 @@ export function UserView() {
           Delete account
         </Button>
       </Flex>
-    </>
+    </Flex>
   );
 }
