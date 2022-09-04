@@ -19,7 +19,15 @@ export const Header = () => {
   });
 
   return (
-    <Flex paddingRight="10px" align="center" justify="right" h="80px" w="100vw">
+    <Flex
+      paddingRight="10px"
+      align="center"
+      justify="right"
+      h="80px"
+      w="100vw"
+      borderBottom="1px"
+      borderBottomColor="black"
+    >
       <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink as={NavLink} to="/">
