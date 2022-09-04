@@ -18,7 +18,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        {/*<Route path='/' element={<ShopView/>}/>*/}
+        <Route path="/" element={<ShopView />} />
         {/*<Route path='/shop/:id' element={<SingleProductView/>}/>*/}
 
         {/*<Route path='/basket' element={<BasketView/>}/>*/}

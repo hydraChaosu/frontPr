@@ -26,11 +26,13 @@ reportWebVitals();
 
 //TODO rect query
 //TODO redux and get data
-
 //TODO styles
-
 //TODO usememo
 //TODO usecallback
-
 //TODO suspense loading
 //TODO lazy loading
+//TODO strony itemow w sklepied
+//TODO jak beda szczegóły itemów w sklepie w backendzie to zaaw wiew itemku
+//TODO search bar
+//TODO paginacja
+//TODO types
