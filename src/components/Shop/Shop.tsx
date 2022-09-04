@@ -1,47 +1,73 @@
-import {ShopItem} from "./ShopItem";
-import {Box, Button, Flex, FormControl, FormLabel, Input, VStack} from "@chakra-ui/react";
-import {Field, Formik} from "formik";
+import { ShopItem } from "./ShopItem";
+import { Flex } from "@chakra-ui/react";
 
 export function Shop() {
-    return (<>
-            <Flex bg="gray.100" align="center" justify="center" h="100vh">
-                <Box bg="white" p={6} rounded="md" w={64}>
-                    <Formik
-                        initialValues={{
-                            searchQuery: ''
-
-                        }}
-                        onSubmit={(values) => {
-                            alert(JSON.stringify(values, null, 2));
-                        }}
-                    >
-                        {({ handleSubmit, errors, touched }) => (
-                            <form onSubmit={handleSubmit}>
-                                <VStack spacing={4} align="flex-start">
-                                    <FormControl>
-                                        <FormLabel htmlFor="searchQuery">Search</FormLabel>
-                                        <Field
-                                            as={Input}
-                                            id="searchQuery"
-                                            name="searchQuery"
-                                            type="string"
-                                            variant="filled"
-                                        />
-                                    </FormControl>
-
-
-                                    <Button type="submit" colorScheme="purple" width="full">
-                                        Login
-                                    </Button>
-                                </VStack>
-                            </form>
-                        )}
-                    </Formik>
-                </Box>
-            </Flex>
-        <div>
-            {[{id: 1, name: 'aaaaa'}, {id: 2, name: 'aaaaa'}].map( item => <ShopItem {...item} />)}
-        </div>
-        </>
-    );
+  return (
+    <>
+      <Flex
+        bg="gray.100"
+        p={4}
+        align="stretch"
+        justify="center"
+        minH="calc(100vh - 80px)"
+        flexWrap="wrap"
+        // flexGrow="1"
+        // marginTop={4}
+      >
+        {[
+          {
+            id: 1,
+            name: "aaaaa",
+            price: 1,
+            quantity: 0,
+            url: "http://www.shop.com",
+            category: "aaa",
+          },
+          {
+            id: 1,
+            name: "aaaaa",
+            price: 1,
+            quantity: 0,
+            url: "http://www.shop.com",
+            category: "aaa",
+          },
+          {
+            id: 1,
+            name: "aaaaa",
+            price: 1,
+            quantity: 0,
+            url: "http://www.shop.com",
+            category: "aaa",
+          },
+          {
+            id: 1,
+            name: "aaaaa",
+            price: 1,
+            quantity: 0,
+            url: "http://www.shop.com",
+            category: "aaa",
+          },
+          {
+            id: 1,
+            name: "aaaaa",
+            price: 1,
+            quantity: 0,
+            url: "http://www.shop.com",
+            category: "aaa",
+          },
+          {
+            id: 1,
+            name: "aaaaa",
+            price: 1,
+            quantity: 0,
+            url: "http://www.shop.com",
+            category: "aaa",
+          },
+        ].map((item) => (
+          <ShopItem {...item} />
+        ))}
+      </Flex>
+      {/*    paginacja */}
+    </>
+  );
 }
