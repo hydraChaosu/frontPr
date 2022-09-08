@@ -64,7 +64,7 @@ export function Shop() {
             category: "aaa",
           },
         ].map((item) => (
-          <ShopItem {...item} />
+          <ShopItem key={item.id} {...item} />
         ))}
       </Flex>
       {/*    paginacja */}
