@@ -1,6 +1,5 @@
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
-
 import {
   Box,
   Button,
@@ -10,31 +9,41 @@ import {
   FormErrorMessage,
   Input,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
+// import { CreateUserResponse } from "types";
+interface CreateUserResponse {
+  message: string;
+  isSuccess: boolean;
+}
+
+const SignupSchema = Yup.object().shape({
+  login: Yup.string()
+    .min(3, "Too Short!")
+    .max(20, "Too Long!")
+    .required("Required"),
+  password: Yup.string()
+    .min(3, "Too Short!")
+    .max(20, "Too Long!")
+    .required("Required"),
+  confirmPassword: Yup.string()
+    .min(3, "Too Short!")
+    .max(20, "Too Long!")
+    .required("Required")
+    .when("password", {
+      is: (val: string) => (val && val.length > 0 ? true : false),
+      then: Yup.string().oneOf(
+        [Yup.ref("password")],
+        "Both password need to be the same"
+      ),
+    }),
+  email: Yup.string().email("Invalid email").required("Required"),
+});
 
 export function RegisterView() {
-  const SignupSchema = Yup.object().shape({
-    login: Yup.string()
-      .min(3, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required"),
-    password: Yup.string()
-      .min(3, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required"),
-    confirmPassword: Yup.string()
-      .min(3, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required")
-      .when("password", {
-        is: (val: string) => (val && val.length > 0 ? true : false),
-        then: Yup.string().oneOf(
-          [Yup.ref("password")],
-          "Both password need to be the same"
-        ),
-      }),
-    email: Yup.string().email("Invalid email").required("Required"),
-  });
+  const toast = useToast();
+  const navigate = useNavigate();
 
   return (
     <Flex bg="gray.100" align="center" justify="center" h="calc(100vh - 80px)">
@@ -46,8 +55,47 @@ export function RegisterView() {
             password: "",
             confirmPassword: "",
           }}
-          onSubmit={(values) => {
-            alert(JSON.stringify(values, null, 2));
+          onSubmit={async (values) => {
+            const response: any = await fetch(
+              "http://localhost:3001/user/register",
+              {
+                method: "POST",
+                body:
+                  values &&
+                  {
+                    body:
+                      values instanceof FormData
+                        ? values
+                        : JSON.stringify(values),
+                  }.body,
+                credentials: "include",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+
+            const responseData = await response.json();
+
+            if (responseData.isSuccess) {
+              toast({
+                title: "Success",
+                description: "User has been registered successfully!",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+              });
+              navigate("/login");
+            }
+            if (!responseData.isSuccess) {
+              toast({
+                title: "Failure",
+                description: responseData.message,
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+              });
+            }
           }}
           validationSchema={SignupSchema}
         >
@@ -117,7 +165,7 @@ export function RegisterView() {
                   <FormErrorMessage>{errors.confirmPassword}</FormErrorMessage>
                 </FormControl>
                 <Button type="submit" colorScheme="purple" width="full">
-                  Login
+                  Register
                 </Button>
               </VStack>
             </form>
