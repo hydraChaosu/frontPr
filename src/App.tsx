@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header/Header";
@@ -9,10 +9,14 @@ import { LoginView } from "./views/LoginView";
 import { BasketView } from "./views/BasketView";
 import { SingleProductView } from "./views/SingleProductView";
 import { ShopView } from "./views/ShopView";
+import { useAppSelector } from "./redux/types";
 
 function App() {
-  //useEffect z sprawdzeniem stanu zalogowania
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn } = useAppSelector((state) => state.auth);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
 
   return (
     <>
@@ -23,10 +27,10 @@ function App() {
 
         <Route path="/basket" element={<BasketView />} />
 
-        <Route path="/login" element={<LoginView />} />
-        <Route path="/register" element={<RegisterView />} />
+        {isLoggedIn || <Route path="/login" element={<LoginView />} />}
+        {isLoggedIn || <Route path="/register" element={<RegisterView />} />}
 
-        <Route path="/user" element={<UserView />} />
+        {!isLoggedIn || <Route path="/user" element={<UserView />} />}
 
         <Route path="*" element={<NotFound />} />
       </Routes>

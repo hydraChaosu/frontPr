@@ -2,27 +2,33 @@ import { Formik, Field } from "formik";
 import {
   Box,
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormLabel,
   FormErrorMessage,
   Input,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+const SignInSchema = Yup.object().shape({
+  login: Yup.string()
+    .min(3, "Too Short!")
+    .max(20, "Too Long!")
+    .required("Required"),
+  password: Yup.string()
+    .min(3, "Too Short!")
+    .max(20, "Too Long!")
+    .required("Required"),
+});
 
 export function LoginView() {
-  const SignInSchema = Yup.object().shape({
-    login: Yup.string()
-      .min(3, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required"),
-    password: Yup.string()
-      .min(3, "Too Short!")
-      .max(20, "Too Long!")
-      .required("Required"),
-  });
+  const toast = useToast();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <Flex bg="gray.100" align="center" justify="center" h="calc(100vh - 80px)">
@@ -32,8 +38,60 @@ export function LoginView() {
             login: "",
             password: "",
           }}
-          onSubmit={(values) => {
-            alert(JSON.stringify(values, null, 2));
+          onSubmit={async (values) => {
+            // const { data, isSuccess } = useQuery(["login"], () => fetch("/"));
+            const response = await fetch("http://localhost:3001/user/login", {
+              method: "POST",
+              body:
+                values &&
+                {
+                  body:
+                    values instanceof FormData
+                      ? values
+                      : JSON.stringify(values),
+                }.body,
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+
+            const responseData = await response.json();
+
+            if (responseData.isSuccess) {
+              toast({
+                title: "Success",
+                description: "User has been login successfully!",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+              });
+              // dispatch(
+              //   logIn({
+              //     isLoggedIn: true,
+              //     userId: responseData.userId,
+              //     userRole: 0,
+              //   })
+              // );
+              dispatch({
+                type: "auth/logIn",
+                payload: {
+                  isLoggedIn: true,
+                  userId: responseData.userId,
+                  userRole: 0,
+                },
+              });
+              navigate("/user");
+            }
+            if (!responseData.isSuccess) {
+              toast({
+                title: "Failure",
+                description: responseData.message,
+                status: "error",
+                duration: 5000,
+                isClosable: true,
+              });
+            }
           }}
           validationSchema={SignInSchema}
         >

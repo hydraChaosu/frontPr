@@ -12,11 +12,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-// import { CreateUserResponse } from "types";
-interface CreateUserResponse {
-  message: string;
-  isSuccess: boolean;
-}
+import { CreateUserRes } from "types";
 
 const SignupSchema = Yup.object().shape({
   login: Yup.string()
@@ -56,7 +52,7 @@ export function RegisterView() {
             confirmPassword: "",
           }}
           onSubmit={async (values) => {
-            const response: any = await fetch(
+            const response = await fetch(
               "http://localhost:3001/user/register",
               {
                 method: "POST",
